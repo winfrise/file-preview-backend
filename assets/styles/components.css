@@ -1,0 +1,11 @@
+.fwx-toast {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  border-radius: 4px;
+  min-width: 200px;
+  background: #eee;
+}

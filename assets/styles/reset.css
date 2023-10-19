@@ -1,0 +1,34 @@
+table {
+  border-collapse: collapse; /* 合并边框 */
+  border-width: 1px; /* 边框宽度 */
+  border-style: solid; /* 边框样式 */
+  border-color: #ccc; /* 边框颜色 */
+}
+
+table tr:nth-child(odd) { /* 奇数行 */
+  background-color: #f9f9f9;
+}
+table tr:nth-child(even) { /* 偶数行 */
+  background-color: #fff;
+}
+
+table tr:hover {
+  background-color: #ffff99; /* 鼠标移上去背景色 */
+}
+
+table td {
+  white-space: nowrap; /* 防止单元格文本换行 */
+  overflow: hidden; /* 超出部分隐藏 */
+  text-overflow: ellipsis; /* 超出部分用省略号表示 */
+  word-break: break-all; /* 单词过长自动换行 */
+}
+table caption {
+  font-size: 16px; /* 字号设置 */
+  font-weight: bold; /* 加粗 */
+  text-align: left; /* 居左 */
+}
+table th {
+  background-color: #ccc; /* 表头背景色 */
+  text-align: center; /* 居中对齐 */
+}
+
