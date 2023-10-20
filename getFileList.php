@@ -1,6 +1,13 @@
 <?php
 // 参考链接：https://blog.csdn.net/qq_45047809/article/details/125068090
 
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST");
+header("Access-Control-Allow-Headers: *");
+
+header('Expires: -1');
+header('Cache-Control: no-cache, must-revalidate');
+
 header("Content-type:application/json");
 
 ini_set('open_basedir', __DIR__);
@@ -35,7 +42,7 @@ function getFileList($path) {
     //从目录总读取文件
     while(false !== ($file_name = readdir($handle))) {
         //除去上级目录和本级目录
-        if($file_name != '.' && $file_name != '..') {
+        if($file_name != '.' && $file_name != '..' && $file_name != '.DS_Store') {
             //文件全路径
             $file_path = "$path/$file_name";
             //文件类型
@@ -47,7 +54,7 @@ function getFileList($path) {
 
             //数组填入值
             $result[$file_type][] = array(
-                'file_suffix'=>getExt($file_path),
+                'file_suffix'=>$file_type == 'file' ? getExt($file_path) : '',
                 'file_name'=>$file_name,
                 'file_path'=>$file_path,
                 'file_size'=>round(filesize($file_path)/1024),
