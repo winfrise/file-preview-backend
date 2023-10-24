@@ -25,10 +25,12 @@ function scan_dir($path) {
         if (is_file($item_path)) {
           $result[] = $item_path;
         } elseif (is_dir($item_path)) {
-          if (!isset($result['children'])) {
-            $result['children'] = array();
+          if (!isset($result['folders'])) {
+            $result['folder_list'] = array();
+            $result['folder_data'] = array();
           }
-          $result['children'] = scan_dir($item_path);
+          $result['folder_list'][] = $item;
+          $result['folder_data'][] = scan_dir($item_path);
         }
     }
     closedir($dir_handle);
@@ -36,5 +38,14 @@ function scan_dir($path) {
 }
 
 $result = scan_dir($path);
-echo json_encode($result);
+
+$res = array(
+  'code' => '000000',
+  'message' => '成功',
+  'data' => array(
+    'list' => $result
+  )
+);
+
+echo json_encode($res)
 ?>
