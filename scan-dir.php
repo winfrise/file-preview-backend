@@ -16,14 +16,18 @@ $path = isset($_GET['path']) ? $_GET['path'] : './uploads';
 function scan_dir($path) {
     $dir_handle = opendir($path);
     $count = 0;
-    $result = array();
+    $result = array(
+      'file_list' => array(),
+      'folder_list' => array(),
+      'folder_data' => array()
+    );
     while ($item = readdir($dir_handle)) {
         if ($item == '.' || $item == '..') {
             continue;
         }
         $item_path = $path . '/' . $item;
         if (is_file($item_path)) {
-          $result[] = $item_path;
+          $result['file_list'][] = $item_path;
         } elseif (is_dir($item_path)) {
           if (!isset($result['folders'])) {
             $result['folder_list'] = array();
@@ -42,9 +46,7 @@ $result = scan_dir($path);
 $res = array(
   'code' => '000000',
   'message' => '成功',
-  'data' => array(
-    'list' => $result
-  )
+  'data' => $result
 );
 
 echo json_encode($res)
