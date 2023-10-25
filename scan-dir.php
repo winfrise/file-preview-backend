@@ -22,7 +22,7 @@ function scan_dir($path) {
       'folder_data' => array()
     );
     while ($item = readdir($dir_handle)) {
-        if ($item == '.' || $item == '..') {
+        if ($item == '.' || $item == '..' || $item === '.git' || $item === 'assets') {
             continue;
         }
         $item_path = $path . '/' . $item;
