@@ -27,7 +27,7 @@ function scan_dir($path) {
         }
         $item_path = $path . '/' . $item;
         if (is_file($item_path)) {
-          $full_path =  $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'] . substr($item_path, 2);
+          $full_path =  $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'] . substr($item_path, 1);
           $result['file_list'][] = $full_path;
         } elseif (is_dir($item_path)) {
           if (!isset($result['folders'])) {
