@@ -13,6 +13,12 @@ ini_set('open_basedir', __DIR__);
 // 路径
 $path = isset($_GET['path']) ? $_GET['path'] : './uploads';
 
+function startsWith ($string, $startString) {
+    $len = strlen($startString);
+    return (substr($string, 0, $len) === $startString);
+}
+
+
 function scan_dir($path) {
     $dir_handle = opendir($path);
     $count = 0;
@@ -22,7 +28,7 @@ function scan_dir($path) {
       'folder_data' => array()
     );
     while ($item = readdir($dir_handle)) {
-        if ($item == '.' || $item == '..' || $item === '.git' || $item === 'assets') {
+        if ($item == '.' || $item == '..' || $item === '.git' || $item === 'assets' || startsWith($item, '._')) {
             continue;
         }
         $item_path = $path . '/' . $item;
